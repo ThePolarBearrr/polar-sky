@@ -5,6 +5,7 @@ import (
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/client"
+	"github.com/docker/docker/pkg/stdcopy"
 	"io"
 	"os"
 	"polar-sky/log"
@@ -57,6 +58,64 @@ func (d *Docker) Run() DockerResult {
 			Error: err,
 		}
 	}
+	log.Logger.Infof("Container %s has been created\n", resp.ID)
 
-	return DockerResult{}
+	// start container
+	err = d.Client.ContainerStart(ctx, resp.ID, types.ContainerStartOptions{})
+	if err != nil {
+		log.Logger.Errorf("Failed start container %s, error: %v\n", resp.ID, err)
+		return DockerResult{
+			Error:       err,
+			ContainerID: resp.ID,
+		}
+	}
+	log.Logger.Infof("Container %s has been started\n", resp.ID)
+
+	// stdout container log
+	d.ContainerID = resp.ID
+	out, err := d.Client.ContainerLogs(ctx, resp.ID, types.ContainerLogsOptions{ShowStdout: true, ShowStderr: true})
+	if err != nil {
+		log.Logger.Errorf("Failed get container %s log, error: %v\n", resp.ID, err)
+		return DockerResult{
+			Error:       err,
+			ContainerID: resp.ID,
+		}
+	}
+	stdcopy.StdCopy(os.Stdout, os.Stderr, out)
+
+	return DockerResult{
+		ContainerID: resp.ID,
+		Action:      "Run",
+		Result:      "success",
+		Error:       nil,
+	}
+}
+
+func (d *Docker) Stop() DockerResult {
+	log.Logger.Infof("Attempting to stop container %s", d.ContainerID)
+
+	// stop container
+	ctx := context.Background()
+	err := d.Client.ContainerStop(ctx, d.ContainerID, container.StopOptions{})
+	if err != nil {
+		panic(err)
+	}
+
+	// remove container
+	removeOptions := types.ContainerRemoveOptions{
+		RemoveVolumes: true,
+		RemoveLinks:   false,
+		Force:         false,
+	}
+	err = d.Client.ContainerRemove(ctx, d.ContainerID, removeOptions)
+	if err != nil {
+		panic(err)
+	}
+
+	return DockerResult{
+		Action:      "Stop",
+		Result:      "success",
+		ContainerID: d.ContainerID,
+		Error:       nil,
+	}
 }
