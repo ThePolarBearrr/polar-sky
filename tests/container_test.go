@@ -25,7 +25,7 @@ func TestContainer(t *testing.T) {
 	dc, _ := client.NewClientWithOpts(client.FromEnv, client.WithVersion("1.41"))
 	d := task.Docker{
 		Client: dc,
-		Config: c,
+		Config: &c,
 	}
 
 	dr := d.Run()
@@ -33,7 +33,7 @@ func TestContainer(t *testing.T) {
 		logger.Errorf("Failed run task %v with docker %v, error: %v\n", c, d, dr.Error)
 	}
 
-	dr = d.Stop()
+	dr = d.Stop(dr.ContainerID)
 	if dr.Error != nil {
 		logger.Errorf("Failed stop task %v with docker %v, error: %v\n", c, d, dr.Error)
 	}

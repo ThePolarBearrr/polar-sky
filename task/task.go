@@ -21,16 +21,16 @@ type Task struct {
 	Name          string
 	State         State
 	Image         string
-	Memory        int
-	Disk          int
+	Memory        int64
+	Disk          int64
 	ExposedPorts  nat.PortSet
 	PortBindings  map[string]string
 	RestartPolicy string
+	ContainerID   string
 	StartTime     time.Time
 	FinishTime    time.Time
 }
 
-// TODO: change state define to express diff taskevent
 type TaskEvent struct {
 	ID        uuid.UUID
 	State     State // which state the task should transition to
@@ -49,4 +49,13 @@ type Config struct {
 	AttachStdin   bool
 	AttachStdout  bool
 	AttachStderr  bool
+}
+
+func NewConfig(t *Task) Config {
+	return Config{
+		RestartPolicy: t.RestartPolicy,
+		Image:         t.Image,
+		Memory:        t.Memory,
+		Disk:          t.Disk,
+	}
 }

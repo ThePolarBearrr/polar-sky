@@ -11,10 +11,11 @@ import (
 	"polar-sky/log"
 )
 
+var Client client.Client
+
 type Docker struct {
-	Client      *client.Client
-	Config      Config
-	ContainerID string
+	Client *client.Client
+	Config *Config
 }
 
 type DockerResult struct {
@@ -22,6 +23,13 @@ type DockerResult struct {
 	Error       error
 	ContainerID string
 	Result      string
+}
+
+func NewDocker(cfg *Config) Docker {
+	return Docker{
+		Client: &Client,
+		Config: cfg,
+	}
 }
 
 func (d *Docker) Run() DockerResult {
@@ -48,8 +56,9 @@ func (d *Docker) Run() DockerResult {
 		Env:   d.Config.Env,
 	}
 	hc := container.HostConfig{
-		RestartPolicy: rp,
-		Resources:     r,
+		RestartPolicy:   rp,
+		Resources:       r,
+		PublishAllPorts: true,
 	}
 	resp, err := d.Client.ContainerCreate(ctx, &cc, &hc, nil, nil, d.Config.Name)
 	if err != nil {
@@ -72,7 +81,6 @@ func (d *Docker) Run() DockerResult {
 	log.Logger.Infof("Container %s has been started\n", resp.ID)
 
 	// stdout container log
-	d.ContainerID = resp.ID
 	out, err := d.Client.ContainerLogs(ctx, resp.ID, types.ContainerLogsOptions{ShowStdout: true, ShowStderr: true})
 	if err != nil {
 		log.Logger.Errorf("Failed get container %s log, error: %v\n", resp.ID, err)
@@ -91,12 +99,12 @@ func (d *Docker) Run() DockerResult {
 	}
 }
 
-func (d *Docker) Stop() DockerResult {
-	log.Logger.Infof("Attempting to stop container %s", d.ContainerID)
+func (d *Docker) Stop(ContainerID string) DockerResult {
+	log.Logger.Infof("Attempting to stop container %s", ContainerID)
 
 	// stop container
 	ctx := context.Background()
-	err := d.Client.ContainerStop(ctx, d.ContainerID, container.StopOptions{})
+	err := d.Client.ContainerStop(ctx, ContainerID, container.StopOptions{})
 	if err != nil {
 		panic(err)
 	}
@@ -107,7 +115,7 @@ func (d *Docker) Stop() DockerResult {
 		RemoveLinks:   false,
 		Force:         false,
 	}
-	err = d.Client.ContainerRemove(ctx, d.ContainerID, removeOptions)
+	err = d.Client.ContainerRemove(ctx, ContainerID, removeOptions)
 	if err != nil {
 		panic(err)
 	}
@@ -115,7 +123,7 @@ func (d *Docker) Stop() DockerResult {
 	return DockerResult{
 		Action:      "Stop",
 		Result:      "success",
-		ContainerID: d.ContainerID,
+		ContainerID: ContainerID,
 		Error:       nil,
 	}
 }

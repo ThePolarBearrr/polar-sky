@@ -1,20 +1,40 @@
 package manager
 
 import (
+	"github.com/golang-collections/collections/queue"
 	"github.com/google/uuid"
-	"go.uber.org/zap"
 	"polar-sky/task"
-	"polar-sky/worker"
 )
 
 type Manager struct {
-	//TODO: what use
-	TaskDB      map[string][]task.Task
-	TaskEventDB map[string][]task.TaskEvent
+	LastWorker int
+	Pending    queue.Queue
+
+	TaskDB      map[uuid.UUID]*task.Task
+	TaskEventDB map[uuid.UUID]*task.TaskEvent
 
 	Workers       []string
 	WorkerTaskMap map[string][]uuid.UUID
-	TaskWorkerMap map[uuid.UUID]worker.Worker
+	TaskWorkerMap map[uuid.UUID]string
+}
 
-	Logger zap.Logger
+func (m *Manager) AddTaskEvent(te task.TaskEvent) {
+	m.Pending.Enqueue(te)
+}
+
+func New(workers []string) *Manager {
+	taskDB := make(map[uuid.UUID]*task.Task)
+	taskEventDB := make(map[uuid.UUID]*task.TaskEvent)
+	workerTaskMap := make(map[string][]uuid.UUID)
+	taskWorkerMap := make(map[uuid.UUID]string)
+	for _, worker := range workers {
+		workerTaskMap[worker] = []uuid.UUID{}
+	}
+	return &Manager{
+		TaskDB:        taskDB,
+		TaskEventDB:   taskEventDB,
+		Workers:       workers,
+		WorkerTaskMap: workerTaskMap,
+		TaskWorkerMap: taskWorkerMap,
+	}
 }

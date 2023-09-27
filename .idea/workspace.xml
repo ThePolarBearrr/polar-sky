@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2a2c0dc6-00f8-4961-94fd-fff9ae3e88a7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/manager.go" beforeDir="false" afterPath="$PROJECT_DIR$/manager/manager.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/select_worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/manager/select_worker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/send_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/manager/send_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manager/update_tasks.go" beforeDir="false" afterPath="$PROJECT_DIR$/manager/update_tasks.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/docker.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/docker.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/task.go" beforeDir="false" afterPath="$PROJECT_DIR$/task/task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/container_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/container_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/skeleton_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/tests/skeleton_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker/collect_stats.go" beforeDir="false" afterPath="$PROJECT_DIR$/worker/collect_stats.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker/run_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/worker/run_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker/start_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/worker/start_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker/stop_task.go" beforeDir="false" afterPath="$PROJECT_DIR$/worker/stop_task.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/worker/worker.go" beforeDir="false" afterPath="$PROJECT_DIR$/worker/worker.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Vaq0TXKXAPb7xI4ntGEpvdknHq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/polarbear/GolandProjects/polar-sky&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Go Build.go build polar-sky">
+    <configuration name="go build polar-sky" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="polar-sky" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="polar-sky" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestAPI in polar-sky/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="polar-sky" />
+      <working_directory value="$PROJECT_DIR$/tests" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="polar-sky/tests" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestAPI\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestContainer in polar-sky/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="polar-sky" />
+      <working_directory value="$PROJECT_DIR$/tests" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="polar-sky/tests" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestContainer\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestSkeleton in polar-sky/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="polar-sky" />
+      <working_directory value="$PROJECT_DIR$/tests" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="polar-sky/tests" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestSkeleton\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestWorker in polar-sky/tests" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="polar-sky" />
+      <working_directory value="$PROJECT_DIR$/tests" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="polar-sky/tests" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestWorker\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build polar-sky" />
+        <item itemvalue="Go Test.TestAPI in polar-sky/tests" />
+        <item itemvalue="Go Test.TestWorker in polar-sky/tests" />
+        <item itemvalue="Go Test.TestContainer in polar-sky/tests" />
+        <item itemvalue="Go Test.TestSkeleton in polar-sky/tests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

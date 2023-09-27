@@ -13,7 +13,8 @@ import (
 )
 
 func TestSkeleton(t *testing.T) {
-	testLogger, _ := zap.NewDevelopment()
+	logger, _ := zap.NewDevelopment()
+	testLogger := logger.Sugar()
 
 	tsk := &task.Task{
 		ID:     uuid.New(),
@@ -37,20 +38,19 @@ func TestSkeleton(t *testing.T) {
 		Name:      "test-worker",
 		Queue:     *queue.New(),
 		TaskCount: 1,
-		DB:        make(map[uuid.UUID]task.Task),
+		DB:        make(map[uuid.UUID]*task.Task),
 		Logger:    *testLogger,
 	}
 
-	wker.RunTask()
-	wker.StartTask()
+	wker.RunTasks()
+	wker.StartTask(tsk)
 	wker.CollectStats()
-	wker.StopTask()
+	wker.StopTask(tsk)
 
 	m := &manager.Manager{
-		TaskDB:      make(map[string][]task.Task),
-		TaskEventDB: make(map[string][]task.TaskEvent),
+		TaskDB:      make(map[uuid.UUID]*task.Task),
+		TaskEventDB: make(map[uuid.UUID]*task.TaskEvent),
 		Workers:     []string{wker.Name},
-		Logger:      *testLogger,
 	}
 
 	m.SelectWorker()
